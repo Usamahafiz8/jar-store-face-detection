@@ -102,8 +102,8 @@ class HomePage extends Component {
   render() {
     const { personalPhoto, overlayImg, overlayValues, loading } = this.state;
     return (
-      <MainContainer>
         <>
+      {/* <MainContainer>
           <div
           style={{
             display: "flex",
@@ -168,7 +168,75 @@ class HomePage extends Component {
                   </div>
           </div>
         </div>
+      
+          </MainContainer> */}
+          <MainContainer>
+  <>
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        padding: "20px", // Add some padding for better spacing
+      }}
+    >
+      <h1 style={{ fontSize: "64px" }}>JAR STORE</h1>
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column", // Change to column layout on small screens
+          gap: "16px",
+          alignItems: "center",
+        }}
+      >
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            gap: "16px",
+            alignItems: "center",
+          }}
+        >
+          <ImagesOuterContainer>
+            <ImagesContainer>
+              {personalPhoto ? (
+                <PersonalPhoto
+                  personalPhoto={personalPhoto}
+                  resetForNewPhoto={this.resetForNewPhoto}
+                  className="target-image"
+                  initiateFaceAnalysis={this.initiateFaceAnalysis}
+                  loading={loading}
+                />
+              ) : (
+                <UploadPersonalPhoto
+                  setPersonalPhoto={this.setPersonalPhoto}
+                  presetPhotos={presetPhotos}
+                />
+              )}
+              {personalPhoto && overlayImg && (
+                <OverlayImage overlayImg={overlayImg} overlayValues={overlayValues} />
+              )}
+            </ImagesContainer>
+          </ImagesOuterContainer>
+        </div>
+        <div>
+          <OverlayList
+            loading={loading}
+            overlayItems={shortenOverlayData(overlayData)}
+            onOverlayItemClick={this.overlayItemClickHandler}
+          />
+        </div>
+      </div>
+    </div>
+  </>
+</MainContainer>
+
       </>
+      );
+    }
+  }
+  
+  export default HomePage;
         {/* <ImagesOuterContainer>
           <ImagesContainer>
             {personalPhoto ? (
@@ -199,9 +267,3 @@ class HomePage extends Component {
           overlayItems={shortenOverlayData(overlayData)}
           onOverlayItemClick={this.overlayItemClickHandler}
         /> */}
-      </MainContainer>
-    );
-  }
-}
-
-export default HomePage;
